@@ -1,0 +1,102 @@
+// Fahim
+"use client";
+import { ChevronDown, LogOut, Search, Settings } from "lucide-react";
+import { SidebarSeparator, SidebarTrigger } from '@/components/ui/sidebar';
+import Image from "next/image";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { useRouter } from "next/navigation";
+import LogOutModal from "./LogOutModal";
+import { useLogOut } from "@/app/LogOutContext";
+import { Input } from "@/components/ui/input";
+
+
+export default function NavBarWithTrigger() {
+    const { isLogoutOpen, setIsLogoutOpen } = useLogOut();
+    const router = useRouter();
+
+    const userPhoto = typeof window !== 'undefined'
+        ? (localStorage.getItem('user_photo') &&
+            localStorage.getItem('user_photo') !== 'null' &&
+            localStorage.getItem('user_photo') !== ''
+            ? localStorage.getItem('user_photo')
+            : null)
+        : null;
+
+    const userName = typeof window !== 'undefined'
+        ? (localStorage.getItem("user_name") &&
+            localStorage.getItem("user_name") !== 'null'
+            ? localStorage.getItem("user_name")
+            : '')
+        : '';
+
+    const userEmail = typeof window !== 'undefined'
+        ? (localStorage.getItem("user_email") &&
+            localStorage.getItem("user_email") !== 'null'
+            ? localStorage.getItem("user_email")
+            : '')
+        : '';
+
+    return (
+        <div>
+            <nav className="p-4 flex items-center justify-between">
+                {/*Left*/}
+                <div className="flex gap-2">
+                    <SidebarTrigger />
+                    <p className="font-medium text-black">Dashboard</p>
+                </div>
+
+                {/*Right*/}
+                <div className="flex justify-end items-center gap-3">
+                    <div className="relative w-full">
+                        <Input
+                            type="text"
+                            id="password"
+                            placeholder="Search for anything"
+                            className="rounded-full pr-5 font-nunito bg-[#F2F2F2] text-[#3F3F3F] 
+                            text-base" // leave space for the eye button
+                        // {...register("password")}
+                        />
+                        <button type="button" className="absolute right-3 top-2.5 cursor-pointer">
+                            <Search />
+                        </button>
+                    </div>
+                    <div className="relative w-12 h-12">
+                        {userPhoto ? (
+                            <Image src={userPhoto} alt="admin-photo" fill className="rounded-full
+                            object-cover" unoptimized />
+                        ) : (
+                            <div className="w-full h-full bg-gray-200 rounded-full" />
+                        )}
+                    </div>
+                    <div>
+                        {/* <h1 className="font-nunito text-[#252525]">{userName}</h1>
+                        <p className="font-nunito text-[#595959]">{userEmail}</p> */}
+                        <h1 className="font-nunito text-[#252525]">Alex</h1>
+                        <p className="font-nunito text-[#595959]">Admin</p>
+                    </div>
+                    <Popover>
+                        <PopoverTrigger asChild>
+                            <ChevronDown className="cursor-pointer" />
+                        </PopoverTrigger>
+                        <PopoverContent className="w-64 mr-4 flex flex-col gap-4 bg-white">
+                            <button className="font-poppins text-[#252525] cursor-pointer flex items-center
+                            gap-3" onClick={() => router.push("/super-admin/settings")}>
+                                <Settings className="w-5 h-5" />
+                                Settings
+                            </button>
+                            <button className="font-poppins text-[#B3261E] cursor-pointer flex items-center
+                            gap-3" onClick={() => setIsLogoutOpen(true)}>
+                                <LogOut className="w-5 h-5" />
+                                Log Out
+                            </button>
+                        </PopoverContent>
+                    </Popover>
+                    <LogOutModal />
+                </div>
+            </nav>
+            <SidebarSeparator />
+        </div>
+    );
+}
+
+
