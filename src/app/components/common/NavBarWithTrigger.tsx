@@ -52,8 +52,8 @@ export default function NavBarWithTrigger() {
                             type="text"
                             id="password"
                             placeholder="Search for anything"
-                            className="rounded-full pr-5 font-nunito bg-[#F2F2F2] text-[#3F3F3F] 
-                            text-base" // leave space for the eye button
+                            className="rounded-full pr-10 font-nunito bg-white text-[#3F3F3F] 
+                            text-base"
                         // {...register("password")}
                         />
                         <button type="button" className="absolute right-3 top-2.5 cursor-pointer">

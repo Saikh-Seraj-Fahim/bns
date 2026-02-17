@@ -6,9 +6,13 @@ export default function Dashboard() {
     return (
         <div>
             <SimpleBarChart />
-            <div className="flex flex-col lg:flex-row lg:gap-2">
-                <SimpleAreaChart />
-                <CustomActiveShapePieChart />
+            <div className="grid grid-cols-1 2xl:grid-cols-5 gap-4">
+                <div className="2xl:col-span-3">
+                    <SimpleAreaChart />
+                </div>
+                <div className="2xl:col-span-2">
+                    <CustomActiveShapePieChart />
+                </div>
             </div>
         </div>
     )

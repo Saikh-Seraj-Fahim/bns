@@ -69,6 +69,7 @@ const renderActiveShape = ({
     );
 };
 
+
 export default function CustomActiveShapePieChart({
     isAnimationActive = true,
     defaultIndex = undefined,
@@ -77,15 +78,15 @@ export default function CustomActiveShapePieChart({
     defaultIndex?: TooltipIndex;
 }) {
     return (
-        <div className='w-[40%] bg-white shadow-lg rounded-lg p-5 m-5'>
+        <div className='bg-white shadow-lg rounded-lg p-5 m-5'>
             <h1 className='font-bold font-nunito text-xl mb-6'>Activity</h1>
-            <ResponsiveContainer width="100%" height={500} aspect={1}>
+            <ResponsiveContainer width="100%" height={400}>
                 <PieChart
                     margin={{
-                        top: 50,
-                        right: 120,
-                        bottom: 0,
-                        left: 120,
+                        top: 20,
+                        right: 20,
+                        bottom: 20,
+                        left: 20,
                     }}
                 >
                     <Pie

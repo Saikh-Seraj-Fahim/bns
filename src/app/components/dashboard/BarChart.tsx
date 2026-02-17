@@ -66,7 +66,7 @@ export default function SimpleBarChart() {
     return (
         <div className='bg-white shadow-lg rounded-lg p-5 m-5'>
             <h1 className='font-bold font-nunito text-xl mb-6'>Total Users Registered</h1>
-            <ResponsiveContainer width="100%" height={400}>
+            <ResponsiveContainer width="100%" height={500}>
                 <BarChart
                     data={data}
                     margin={{
@@ -76,12 +76,18 @@ export default function SimpleBarChart() {
                         bottom: 5,
                     }}
                 >
+                    <defs>
+                        <linearGradient id="colorBar" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="5%" stopColor="#116D66" stopOpacity={0.9} />
+                            <stop offset="95%" stopColor="#FFFFFF" stopOpacity={0.3} />
+                        </linearGradient>
+                    </defs>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
                     <YAxis />
                     <Tooltip />
                     <Legend />
-                    <Bar dataKey="uv" fill="#82ca9d" activeBar={{ fill: 'gold', stroke: 'purple' }}
+                    <Bar dataKey="uv" fill="url(#colorBar)" activeBar={{ fill: 'gold', stroke: 'purple' }}
                         radius={[10, 10, 0, 0]} />
                 </BarChart>
             </ResponsiveContainer>
