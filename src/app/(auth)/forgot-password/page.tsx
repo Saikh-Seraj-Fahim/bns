@@ -125,8 +125,8 @@ export default function ForgotPassword() {
                 <div className="w-full grid gap-2 items-center mt-4">
                     <div className="relative w-full">
                         <Input type="text" id="emailAddress" placeholder="fahim@gmail.com"
-                            className="rounded-full pl-5 font-nunito bg-[#F2F2F2] text-[#3F3F3F] 
-              text-base"
+                            className="rounded-full pl-5 font-nunito bg-white text-[#3F3F3F] 
+                            text-base"
                             {...register("emailAddress")}
                         />
                         <label

@@ -97,7 +97,7 @@ export default function AppSidebar() {
                                                 <TooltipTrigger asChild>
                                                     <SidebarMenuButton asChild
                                                         className={`${isActive ?
-                                                            "bg-[#116D661F] text-[#116D66] hover:bg-[#116D661F] hover:text-[#116D66] font-bold" : "text-[#7C8DB5] font-medium"}`}>
+                                                            "bg-[#116D661F] text-[#116D66] text-base hover:bg-[#116D661F] hover:text-[#116D66] font-bold" : "text-[#7C8DB5] text-base font-medium"}`}>
                                                         <Link href={item.url}>
                                                             {item.icon}
                                                             <span>{item.title}</span>
@@ -131,7 +131,7 @@ export default function AppSidebar() {
                                         onClick={() => setIsLogoutOpen(true)}>
                                         <TbLogout />
                                         {/* Show "Log Out" text only when sidebar is expanded */}
-                                        <span className="group-data-[collapsible=icon]:hidden">Log Out</span>
+                                        <span className="group-data-[collapsible=icon]:hidden text-base">Log Out</span>
                                     </SidebarMenuButton>
                                 </TooltipTrigger>
                                 {/* Only render tooltip when sidebar is collapsed */}

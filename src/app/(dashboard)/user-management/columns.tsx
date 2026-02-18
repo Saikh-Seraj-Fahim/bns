@@ -2,11 +2,10 @@
 
 import { ColumnDef } from "@tanstack/react-table"
 import { Eye, SquarePen, Trash2 } from "lucide-react"
-import { useRouter } from "next/navigation"
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
-export type Payment = {
+export type UserDataType = {
     id: string
     name: string
     user_photo: string
@@ -16,7 +15,7 @@ export type Payment = {
     country: string
 }
 
-export const columns: ColumnDef<Payment>[] = [
+export const columns = (setEditingUser: (user: UserDataType) => void): ColumnDef<UserDataType>[] => [
     {
         accessorKey: "user_photo",
         header: "Profile Picture"
@@ -45,11 +44,10 @@ export const columns: ColumnDef<Payment>[] = [
         id: "actions",
         header: "Actions",
         cell: ({ row }) => {
-            const business = row.original;
-
-            const router = useRouter();
+            const user = row.original;
 
             const handleEdit = () => {
+
                 // router.push(`/super-admin/edit-business/${business.id}/`);
             };
 
@@ -94,7 +92,7 @@ export const columns: ColumnDef<Payment>[] = [
             return (
                 <div className="flex items-center gap-3">
                     <button
-                        onClick={handleEdit}
+                        onClick={() => setEditingUser(user)}
                         className="w-8 h-8 flex items-center justify-center rounded-sm bg-[#094AAA1F]
                         cursor-pointer"
                     >

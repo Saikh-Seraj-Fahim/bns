@@ -1,6 +1,6 @@
 export const userData = [
     {
-        id: 1,
+        id: "1",
         name: "Henry",
         user_photo: "/balans-user.png",
         email: "abc@gmail.com",
@@ -9,7 +9,7 @@ export const userData = [
         country: "United Kingdom",
     },
     {
-        id: 2,
+        id: "2",
         name: "Lucas",
         user_photo: "/balans-user.png",
         email: "abc@gmail.com",
@@ -18,7 +18,7 @@ export const userData = [
         country: "United Kingdom",
     },
     {
-        id: 3,
+        id: "3",
         name: "James",
         user_photo: "/balans-user.png",
         email: "abc@gmail.com",
@@ -27,7 +27,7 @@ export const userData = [
         country: "United Kingdom",
     },
     {
-        id: 4,
+        id: "4",
         name: "Henry",
         user_photo: "/balans-user.png",
         email: "abc@gmail.com",
@@ -36,7 +36,7 @@ export const userData = [
         country: "United Kingdom",
     },
     {
-        id: 5,
+        id: "5",
         name: "Lucas",
         user_photo: "/balans-user.png",
         email: "abc@gmail.com",
@@ -45,7 +45,7 @@ export const userData = [
         country: "United Kingdom",
     },
     {
-        id: 6,
+        id: "6",
         name: "James",
         user_photo: "/balans-user.png",
         email: "abc@gmail.com",
@@ -54,7 +54,7 @@ export const userData = [
         country: "United Kingdom",
     },
     {
-        id: 7,
+        id: "7",
         name: "Henry",
         user_photo: "/balans-user.png",
         email: "abc@gmail.com",
@@ -63,7 +63,7 @@ export const userData = [
         country: "United Kingdom",
     },
     {
-        id: 8,
+        id: "8",
         name: "Lucas",
         user_photo: "/balans-user.png",
         email: "abc@gmail.com",
@@ -72,7 +72,7 @@ export const userData = [
         country: "United Kingdom",
     },
     {
-        id: 9,
+        id: "9",
         name: "James",
         user_photo: "/balans-user.png",
         email: "abc@gmail.com",
@@ -81,7 +81,7 @@ export const userData = [
         country: "United Kingdom",
     },
     {
-        id: 10,
+        id: "10",
         name: "Henry",
         user_photo: "/balans-user.png",
         email: "abc@gmail.com",
@@ -90,7 +90,7 @@ export const userData = [
         country: "United Kingdom",
     },
     {
-        id: 11,
+        id: "11",
         name: "Lucas",
         user_photo: "/balans-user.png",
         email: "abc@gmail.com",
@@ -99,7 +99,7 @@ export const userData = [
         country: "United Kingdom",
     },
     {
-        id: 12,
+        id: "12",
         name: "James",
         user_photo: "/balans-user.png",
         email: "abc@gmail.com",

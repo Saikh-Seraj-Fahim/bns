@@ -42,7 +42,8 @@ export function DataTable<TData, TValue>({
                                 {headerGroup.headers.map((header) => {
                                     return (
                                         <TableHead key={header.id}
-                                            className="bg-[#116D66] text-[#FFFFFF] font-nunito py-4">
+                                            className="bg-[#116D66] text-[#FFFFFF] text-base 
+                                            font-nunito py-4">
                                             {header.isPlaceholder
                                                 ? null
                                                 : flexRender(
@@ -64,7 +65,8 @@ export function DataTable<TData, TValue>({
                                     data-state={row.getIsSelected() && "selected"}
                                 >
                                     {row.getVisibleCells().map((cell) => (
-                                        <TableCell key={cell.id} className="font-nunito text-black py-4">
+                                        <TableCell key={cell.id} className="font-nunito text-black 
+                                        text-base py-3">
                                             {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                         </TableCell>
                                     ))}

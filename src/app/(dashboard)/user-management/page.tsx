@@ -1,14 +1,30 @@
+"use client"
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { userData } from "@/data";
 import { DataTable } from "./data-table";
 import { columns } from "./columns";
-
-// const handlePageChange() => {
-
-// }
+import { UserDataType } from "./columns";
+import { useRouter, useSearchParams } from "next/navigation";
+import EditUserForm from "@/app/components/UserManagement/EditUserForm";
 
 export default function UserManagement() {
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const editingId = searchParams.get("edit");  // read from URL
+    const editingUser = userData.find((u) => u.id === editingId) ?? null;
+
+    const EditingUser = (user: UserDataType) => {
+        router.push(`?edit=${user.id}`); // push to history
+    };
+
+    const handleBack = () => {
+        router.back(); // browser back arrow works now
+    };
+
+    if (editingUser) {
+        return <EditUserForm user={editingUser} onBack={handleBack} />;
+    }
     return (
         <div className="px-12 py-6">
             <div className="flex items-center gap-4">
@@ -28,7 +44,7 @@ export default function UserManagement() {
                 </div>
             </div>
             <DataTable
-                columns={columns}
+                columns={columns(EditingUser)}
                 data={userData}
                 total={12}
                 currentPage={1}
@@ -37,3 +53,18 @@ export default function UserManagement() {
         </div>
     );
 }
+
+
+
+
+// useSearchParams() is a hook, and hooks in Next.js/React are reactive —
+// when the URL search params change, useSearchParams() triggers a re-render of the component, just like
+// useState would.
+// So the flow is:
+// router.push(?edit=123)
+//     → URL changes
+//     → useSearchParams() detects the change
+//     → triggers re-render of page.tsx
+//     → searchParams.get("edit") now returns "123"
+//     → editingUser is found
+//     → edit form renders

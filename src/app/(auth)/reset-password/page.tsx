@@ -156,7 +156,7 @@ export default function ResetPassword() {
                             type={showPassword1 ? "text" : "password"}
                             id="new-password"
                             placeholder="********"
-                            className="rounded-full pl-5 font-nunito bg-[#F2F2F2] text-[#3F3F3F] 
+                            className="rounded-full pl-5 font-nunito bg-white text-[#3F3F3F] 
                             text-base" // leave space for the eye button
                             {...register("newPassword")}
                         />
@@ -187,7 +187,7 @@ export default function ResetPassword() {
                             type={showPassword2 ? "text" : "password"}
                             id="confirm-password"
                             placeholder="********"
-                            className="rounded-full pl-5 font-nunito bg-[#F2F2F2] text-[#3F3F3F] 
+                            className="rounded-full pl-5 font-nunito bg-white text-[#3F3F3F] 
                             text-base" // leave space for the eye button
                             {...register("confirmPassword")}
                         />
