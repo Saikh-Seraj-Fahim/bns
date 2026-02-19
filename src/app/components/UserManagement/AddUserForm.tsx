@@ -7,11 +7,11 @@ import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { UserDataType } from "@/app/(dashboard)/user-management/columns";
 import { Calendar } from "@/components/ui/calendar";
+import { Upload } from "lucide-react";
 
 // zod schema
-const editUserSchema = z.object({
+const addUserSchema = z.object({
     name: z.string().min(1, "Name is required"),
     email: z.string().email("Invalid email address"),
     phone: z.string().min(7, "Phone number is too short"),
@@ -19,47 +19,89 @@ const editUserSchema = z.object({
     country: z.string().min(1, "Country is required"),
 });
 
-type EditUserFormValues = z.infer<typeof editUserSchema>;
+type AddUserFormValues = z.infer<typeof addUserSchema>;
 
-interface EditUserFormProps {
-    user: UserDataType;
+interface AddUserFormProps {
     onBack: () => void;
 }
 
-export default function EditUserForm({ user, onBack }: EditUserFormProps) {
+export default function AddUserForm({ onBack }: AddUserFormProps) {
     const [open, setOpen] = useState(false);
-    const [date, setDate] = useState<Date | undefined>(() => {
-        if (!user.dob) return undefined;
-        const [day, month, year] = user.dob.split("/");
-        const parsed = new Date(Number(year), Number(month) - 1, Number(day));
-        return isNaN(parsed.getTime()) ? undefined : parsed;
-    });
+    const [date, setDate] = useState<Date | undefined>(undefined);
 
     const {
         register,
         handleSubmit,
         control,
         formState: { errors },
-    } = useForm<EditUserFormValues>({
-        resolver: zodResolver(editUserSchema),
-        defaultValues: { // pre-populate all fields
-            name: user.name,
-            email: user.email,
-            phone: user.phone,
-            dob: user.dob,
-            country: user.country,
+    } = useForm<AddUserFormValues>({
+        resolver: zodResolver(addUserSchema),
+        defaultValues: {
+            name: "",
+            email: "",
+            phone: "",
+            dob: "",
+            country: "",
         },
     });
 
-    const onSubmit = (data: EditUserFormValues) => {
+    const onSubmit = (data: AddUserFormValues) => {
         console.log("Updated data:", data);  // replace with API call
+    };
+
+    const [imageFile, setImageFile] = useState<File | null>(null);
+    const [profileImageUrl, setProfileImageUrl] = useState<string>("");
+
+    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            setImageFile(file);
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setProfileImageUrl(reader.result as string);
+            };
+            reader.readAsDataURL(file);
+        }
     };
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="mx-4 sm:mx-16 my-8 p-5 border shadow-lg rounded-lg">
-            <h1 className="font-bold font-nunito text-black text-xl">Edit User Detail</h1>
+            <h1 className="font-bold font-nunito text-black text-xl">Add User Detail</h1>
             <div className="w-full h-[1px] bg-gray-300 mt-4" />
-            <div className="flex flex-col sm:flex-row sm:items-end gap-6">
+            <div className="flex items-end gap-6">
+                {/* Box */}
+                <label htmlFor="profile-upload" className="relative w-[300px] h-[230px] rounded-2xl 
+                bg-gray-100 flex items-center justify-center cursor-pointer hover:bg-gray-200 
+                transition overflow-hidden flex-shrink-0">
+                    {profileImageUrl
+                        ? <img src={profileImageUrl} alt="preview" className="w-full h-full object-cover" />
+                        : <Upload className="w-10 h-10 text-gray-400" />
+                    }
+                    <input
+                        id="profile-upload"
+                        type="file"
+                        accept="image/*"
+                        onChange={handleImageChange}
+                        className="hidden"
+                    />
+                </label>
+
+                {/* Button */}
+                <div className="grid gap-1">
+                    <label htmlFor="profile-upload"
+                        className="rounded-full font-bold font-nunito cursor-pointer self-start
+                    bg-[#116D66] text-base text-[#F3F3F3] px-4 py-2 hover:scale-105 
+                    hover:shadow-lg transition">
+                        Upload Image
+                    </label>
+                    {imageFile && (
+                        <p className="font-nunito text-[#327EF9] text-xs">
+                            Selected: {imageFile.name}
+                        </p>
+                    )}
+                </div>
+            </div>
+            {/* <div className="flex flex-col sm:flex-row sm:items-end gap-6">
                 <div className="relative w-[300px] h-[230px] rounded-full mt-6">
                     <Image src="/balans-user.png" alt="user-photo" fill className="rounded-3xl" />
                 </div>
@@ -67,9 +109,9 @@ export default function EditUserForm({ user, onBack }: EditUserFormProps) {
                 bg-[#116D66] text-base text-[#F3F3F3] hover:bg-[#116D66] hover:text-[#F3F3F3] w-fit"
                 // onClick={() => router.push('/verification-code')}
                 >
-                    Change Image
+                    Upload Image
                 </Button>
-            </div>
+            </div> */}
 
             <div className="flex flex-col xl:flex-row items-center gap-12 mt-12">
                 <div className="w-full grid gap-2 items-center mt-4">
@@ -225,7 +267,7 @@ export default function EditUserForm({ user, onBack }: EditUserFormProps) {
                     hover:scale-105 hover:shadow-lg px-16"
                 // onClick={() => router.push('/verification-code')}
                 >
-                    Update
+                    Save
                 </Button>
             </div>
         </form>
