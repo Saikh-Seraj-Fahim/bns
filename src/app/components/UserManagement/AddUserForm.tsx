@@ -2,7 +2,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import Image from "next/image";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
@@ -17,6 +16,7 @@ const addUserSchema = z.object({
     phone: z.string().min(7, "Phone number is too short"),
     dob: z.string().min(1, "Date of birth is required"),
     country: z.string().min(1, "Country is required"),
+    profile_image: z.instanceof(File, { message: "Image is required" }),
 });
 
 type AddUserFormValues = z.infer<typeof addUserSchema>;
@@ -33,6 +33,7 @@ export default function AddUserForm({ onBack }: AddUserFormProps) {
         register,
         handleSubmit,
         control,
+        setValue,
         formState: { errors },
     } = useForm<AddUserFormValues>({
         resolver: zodResolver(addUserSchema),
@@ -61,6 +62,7 @@ export default function AddUserForm({ onBack }: AddUserFormProps) {
                 setProfileImageUrl(reader.result as string);
             };
             reader.readAsDataURL(file);
+            setValue("profile_image", file);
         }
     };
 
@@ -68,7 +70,8 @@ export default function AddUserForm({ onBack }: AddUserFormProps) {
         <form onSubmit={handleSubmit(onSubmit)} className="mx-4 sm:mx-16 my-8 p-5 border shadow-lg rounded-lg">
             <h1 className="font-bold font-nunito text-black text-xl">Add User Detail</h1>
             <div className="w-full h-[1px] bg-gray-300 mt-4" />
-            <div className="flex items-end gap-6">
+
+            <div className="flex flex-col sm:flex-row items-end gap-6 mt-8">
                 {/* Box */}
                 <label htmlFor="profile-upload" className="relative w-[300px] h-[230px] rounded-2xl 
                 bg-gray-100 flex items-center justify-center cursor-pointer hover:bg-gray-200 
@@ -90,10 +93,12 @@ export default function AddUserForm({ onBack }: AddUserFormProps) {
                 <div className="grid gap-1">
                     <label htmlFor="profile-upload"
                         className="rounded-full font-bold font-nunito cursor-pointer self-start
-                    bg-[#116D66] text-base text-[#F3F3F3] px-4 py-2 hover:scale-105 
-                    hover:shadow-lg transition">
+                        bg-[#116D66] text-base text-[#F3F3F3] px-4 py-2">
                         Upload Image
                     </label>
+                    {errors.profile_image && (
+                        <p className="text-red-500 text-xs font-nunito">{errors.profile_image.message}</p>
+                    )}
                     {imageFile && (
                         <p className="font-nunito text-[#327EF9] text-xs">
                             Selected: {imageFile.name}
@@ -155,7 +160,7 @@ export default function AddUserForm({ onBack }: AddUserFormProps) {
                 </div>
             </div>
 
-            <div className="flex flex-col xl:flex-row items-center gap-12 mt-8">
+            <div className="flex flex-col xl:flex-row items-center gap-12 mt-12">
                 <div className="w-full grid gap-2 items-center mt-4">
                     <div className="relative w-full">
                         <Input type="text" id="phone" placeholder="8452145230"
@@ -241,7 +246,7 @@ export default function AddUserForm({ onBack }: AddUserFormProps) {
                 </div>
             </div>
 
-            <div className="w-full xl:w-1/2 grid gap-2 items-center mt-12">
+            <div className="w-full xl:w-1/2 grid gap-2 items-center mt-16">
                 <div className="relative w-full">
                     <Input type="text" id="country" placeholder="United Kingdom"
                         className="rounded-full pl-5 font-nunito bg-white text-[#3F3F3F] 
@@ -262,9 +267,8 @@ export default function AddUserForm({ onBack }: AddUserFormProps) {
             </div>
 
             <div className="mt-16">
-                <Button type="submit" className="rounded-full font-bold 
-                    font-nunito cursor-pointer bg-[#116D66] text-base text-[#F3F3F3] 
-                    hover:scale-105 hover:shadow-lg px-16"
+                <Button type="submit" className="rounded-full font-bold font-nunito cursor-pointer
+                bg-[#116D66] text-base text-[#F3F3F3] hover:scale-105 hover:shadow-lg px-16"
                 // onClick={() => router.push('/verification-code')}
                 >
                     Save
