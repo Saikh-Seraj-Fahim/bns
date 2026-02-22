@@ -1,24 +1,19 @@
 "use client"
 
 import { ColumnDef } from "@tanstack/react-table"
-import { Eye, SquarePen, Trash2 } from "lucide-react"
+import { SquarePen, Trash2 } from "lucide-react"
 import { useDelete } from "@/app/DeleteContext"
 
-export type UserDataType = {
+export type FAQ_DataType = {
     id: string
-    name: string
-    user_photo: string
-    email: string
-    phone: string
-    dob: string
-    country: string
+    question: string
+    answer: string
 }
 
 // Separate component so we can use hooks inside
-function ActionCell({ user, EditUser, ViewUser }: {
-    user: UserDataType;
-    EditUser: (user: UserDataType) => void;
-    ViewUser: (user: UserDataType) => void;
+function ActionCell({ faq, EditFAQ }: {
+    faq: FAQ_DataType;
+    EditFAQ: (faq: FAQ_DataType) => void;
 }) {
     const { setIsDeleteOpen } = useDelete();
 
@@ -26,15 +21,9 @@ function ActionCell({ user, EditUser, ViewUser }: {
         <div className="flex items-center gap-3">
             <button
                 className="w-8 h-8 flex items-center justify-center rounded-sm bg-[#094AAA1F] cursor-pointer"
-                onClick={() => EditUser(user)}
+                onClick={() => EditFAQ(faq)}
             >
                 <SquarePen className="h-4 w-4 text-[#094AAA]" />
-            </button>
-            <button
-                className="w-8 h-8 flex items-center justify-center rounded-sm bg-[#6E76001F] cursor-pointer"
-                onClick={() => ViewUser(user)}
-            >
-                <Eye className="h-4 w-4 text-[#6E7600]" />
             </button>
             <button
                 className="w-8 h-8 flex items-center justify-center rounded-sm bg-[#FFEBEB] cursor-pointer"
@@ -47,40 +36,39 @@ function ActionCell({ user, EditUser, ViewUser }: {
 }
 
 export const columns = (
-    EditUser: (user: UserDataType) => void,
-    ViewUser: (user: UserDataType) => void
-): ColumnDef<UserDataType>[] => [
+    EditFAQ: (faq: FAQ_DataType) => void,
+): ColumnDef<FAQ_DataType>[] => [
+        // {
+        //     header: "Serial No."
+        // },
         {
-            accessorKey: "user_photo",
-            header: "Profile Picture"
+            accessorKey: "question",
+            header: "Questions",
+            cell: ({ row }) => (
+                <div className="max-w-[300px] truncate" title={row.original.question}>
+                    {row.original.question}
+                </div>
+            ),
         },
         {
-            accessorKey: "name",
-            header: "Name",
-        },
-        {
-            accessorKey: "email",
-            header: "Email Address",
-        },
-        {
-            accessorKey: "phone",
-            header: "Phone Number",
-        },
-        {
-            accessorKey: "dob",
-            header: "Date of Birth",
-        },
-        {
-            accessorKey: "country",
-            header: "Country/Region",
+            accessorKey: "answer",
+            header: "Answer",
+            cell: ({ row }) => (
+                <div className="max-w-[300px] truncate" title={row.original.answer}>
+                    {row.original.answer}
+                </div>
+            ),
         },
         {
             id: "actions",
             header: "Actions",
-            cell: ({ row }) => <ActionCell user={row.original} EditUser={EditUser} ViewUser={ViewUser} />,
+            cell: ({ row }) => <ActionCell faq={row.original} EditFAQ={EditFAQ} />,
         }
     ]
 
+
+// The title prop is important — it shows the full text on hover as a native tooltip,
+// so users can still read the complete content.
 
 // The key reason for extracting ActionCell is that hooks can't be called inside a plain cell callback — it's
 // not a React component, so React won't recognize the hook call. Wrapping the cell content in its own component

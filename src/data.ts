@@ -108,3 +108,53 @@ export const userData = [
         country: "United Kingdom",
     },
 ]
+
+
+
+export const FAQ_Data = [
+    {
+        id: "1",
+        question: "Hello! How are you? Have you gone there? Have you eaten rice? How are you? Have you gone there? Have you eaten rice?",
+        answer: "Hi! I am fine. Yes, I have gone there. Yes,I have eaten rice. I am fine. Yes, I have gone there. Yes,I have eaten rice."
+    },
+    {
+        id: "2",
+        question: "Hello! How are you? Have you gone there? Have you eaten rice? How are you? Have you gone there? Have you eaten rice?",
+        answer: "Hi! I am fine. Yes, I have gone there. Yes,I have eaten rice. I am fine. Yes, I have gone there. Yes,I have eaten rice."
+    },
+    {
+        id: "3",
+        question: "Hello! How are you? Have you gone there? Have you eaten rice? How are you? Have you gone there? Have you eaten rice?",
+        answer: "Hi! I am fine. Yes, I have gone there. Yes,I have eaten rice. I am fine. Yes, I have gone there. Yes,I have eaten rice."
+    },
+    {
+        id: "4",
+        question: "Hello! How are you? Have you gone there? Have you eaten rice? How are you? Have you gone there? Have you eaten rice?",
+        answer: "Hi! I am fine. Yes, I have gone there. Yes,I have eaten rice. I am fine. Yes, I have gone there. Yes,I have eaten rice."
+    },
+    {
+        id: "5",
+        question: "Hello! How are you? Have you gone there? Have you eaten rice? How are you? Have you gone there? Have you eaten rice?",
+        answer: "Hi! I am fine. Yes, I have gone there. Yes,I have eaten rice. I am fine. Yes, I have gone there. Yes,I have eaten rice."
+    },
+    {
+        id: "6",
+        question: "Hello! How are you? Have you gone there? Have you eaten rice? How are you? Have you gone there? Have you eaten rice?",
+        answer: "Hi! I am fine. Yes, I have gone there. Yes,I have eaten rice. I am fine. Yes, I have gone there. Yes,I have eaten rice."
+    },
+    {
+        id: "7",
+        question: "Hello! How are you? Have you gone there? Have you eaten rice? How are you? Have you gone there? Have you eaten rice?",
+        answer: "Hi! I am fine. Yes, I have gone there. Yes,I have eaten rice. I am fine. Yes, I have gone there. Yes,I have eaten rice."
+    },
+    {
+        id: "8",
+        question: "Hello! How are you? Have you gone there? Have you eaten rice? How are you? Have you gone there? Have you eaten rice?",
+        answer: "Hi! I am fine. Yes, I have gone there. Yes,I have eaten rice. I am fine. Yes, I have gone there. Yes,I have eaten rice."
+    },
+    {
+        id: "9",
+        question: "Hello! How are you? Have you gone there? Have you eaten rice? How are you? Have you gone there? Have you eaten rice?",
+        answer: "Hi! I am fine. Yes, I have gone there. Yes,I have eaten rice. I am fine. Yes, I have gone there. Yes,I have eaten rice."
+    },
+]

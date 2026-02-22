@@ -1,16 +1,17 @@
-// Fahim
 "use client"
 import "@/app/globals.css";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import AppSidebar from "../components/common/AppSidebar";
 import { Nunito } from "next/font/google";
-import { LogOutProvider } from "../LogOutContext";
 import NavBarWithTrigger from "../components/common/NavBarWithTrigger";
+import { LogOutProvider } from "../LogOutContext";
+import { DeleteProvider } from "../DeleteContext";
+import DeleteModal from "../components/common/DeleteModal";
 
 const nunitoFont = Nunito({
     subsets: ["latin"],
     weight: ["400", "500", "600", "700", "800", "900"],
-    variable: "--font-poppins"
+    variable: "--font-nunito"
 });
 
 export default function RootLayout({
@@ -21,15 +22,18 @@ export default function RootLayout({
     return (
         <section>
             <div className={`${nunitoFont.variable} antialiased`}>
-                <LogOutProvider>
-                    <SidebarProvider>
-                        <AppSidebar />
-                        <main className="w-full">
-                            <NavBarWithTrigger />
-                            {children}
-                        </main>
-                    </SidebarProvider>
-                </LogOutProvider>
+                <DeleteProvider>
+                    <LogOutProvider>
+                        <SidebarProvider>
+                            <AppSidebar />
+                            <main className="w-full">
+                                <NavBarWithTrigger />
+                                {children}
+                                <DeleteModal />
+                            </main>
+                        </SidebarProvider>
+                    </LogOutProvider>
+                </DeleteProvider>
             </div>
         </section>
     );

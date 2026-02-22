@@ -9,10 +9,14 @@ import { useRouter, useSearchParams } from "next/navigation";
 import EditUserForm from "@/app/components/UserManagement/EditUserForm";
 import { Button } from "@/components/ui/button";
 import AddUserForm from "@/app/components/UserManagement/AddUserForm";
+import ViewUserDetails from "@/app/components/UserManagement/ViewUser";
+
 
 export default function UserManagement() {
     const router = useRouter();
     const searchParams = useSearchParams();
+
+    // Edit
     const editingId = searchParams.get("edit");  // read from URL
     const editingUser = userData.find((u) => u.id === editingId) ?? null;
 
@@ -29,9 +33,23 @@ export default function UserManagement() {
     }
 
 
+    // Add
     const mode = searchParams.get("mode");
     if (mode === "add") {
         return <AddUserForm onBack={handleBack} />;
+    }
+
+
+    // View
+    const ViewUser = (user: UserDataType) => {
+        router.push(`?view=${user.id}`);
+    };
+
+    const viewingId = searchParams.get("view");
+    const viewingUser = userData.find((u) => u.id === viewingId) ?? null;
+
+    if (viewingUser) {
+        return <ViewUserDetails user={viewingUser} onBack={handleBack} />;
     }
 
     return (
@@ -60,7 +78,7 @@ export default function UserManagement() {
                 </Button>
             </div>
             <DataTable
-                columns={columns(EditUser)}
+                columns={columns(EditUser, ViewUser)}
                 data={userData}
                 total={12}
                 currentPage={1}
