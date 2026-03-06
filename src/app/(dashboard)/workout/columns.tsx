@@ -3,21 +3,19 @@ import { ColumnDef } from "@tanstack/react-table"
 import { Eye, SquarePen, Trash2 } from "lucide-react"
 import { useDelete } from "@/app/DeleteContext"
 
-export type UserDataType = {
-    id: string
-    name: string
-    user_photo: string
-    email: string
-    phone: string
-    dob: string
-    country: string
+export type WorkoutDataType = {
+    id: string,
+    Workout_Name: string,
+    Description: string,
+    Type: string,
+    Time: string,
 }
 
 // Separate component so we can use hooks inside
-function ActionCell({ user, EditUser, ViewUser }: {
-    user: UserDataType;
-    EditUser: (user: UserDataType) => void;
-    ViewUser: (user: UserDataType) => void;
+function ActionCell({ workout, EditWorkout, ViewWorkout }: {
+    workout: WorkoutDataType;
+    EditWorkout: (workout: WorkoutDataType) => void;
+    ViewWorkout: (workout: WorkoutDataType) => void;
 }) {
     const { setIsDeleteOpen } = useDelete();
 
@@ -25,13 +23,13 @@ function ActionCell({ user, EditUser, ViewUser }: {
         <div className="flex items-center gap-3">
             <button
                 className="w-8 h-8 flex items-center justify-center rounded-sm bg-[#094AAA1F] cursor-pointer"
-                onClick={() => EditUser(user)}
+                onClick={() => EditWorkout(workout)}
             >
                 <SquarePen className="h-4 w-4 text-[#094AAA]" />
             </button>
             <button
                 className="w-8 h-8 flex items-center justify-center rounded-sm bg-[#6E76001F] cursor-pointer"
-                onClick={() => ViewUser(user)}
+                onClick={() => ViewWorkout(workout)}
             >
                 <Eye className="h-4 w-4 text-[#6E7600]" />
             </button>
@@ -46,37 +44,29 @@ function ActionCell({ user, EditUser, ViewUser }: {
 }
 
 export const columns = (
-    EditUser: (user: UserDataType) => void,
-    ViewUser: (user: UserDataType) => void
-): ColumnDef<UserDataType>[] => [
+    EditWorkout: (workout: WorkoutDataType) => void,
+    ViewWorkout: (workout: WorkoutDataType) => void
+): ColumnDef<WorkoutDataType>[] => [
         {
-            accessorKey: "user_photo",
-            header: "Profile Picture"
+            accessorKey: "Workout_Name",
+            header: "Workout Name"
         },
         {
-            accessorKey: "name",
-            header: "Name",
+            accessorKey: "Description",
+            header: "Description",
         },
         {
-            accessorKey: "email",
-            header: "Email Address",
+            accessorKey: "Type",
+            header: "Type",
         },
         {
-            accessorKey: "phone",
-            header: "Phone Number",
-        },
-        {
-            accessorKey: "dob",
-            header: "Date of Birth",
-        },
-        {
-            accessorKey: "country",
-            header: "Country/Region",
+            accessorKey: "Time",
+            header: "Time",
         },
         {
             id: "actions",
             header: "Actions",
-            cell: ({ row }) => <ActionCell user={row.original} EditUser={EditUser} ViewUser={ViewUser} />,
+            cell: ({ row }) => <ActionCell workout={row.original} EditWorkout={EditWorkout} ViewWorkout={ViewWorkout} />,
         }
     ]
 

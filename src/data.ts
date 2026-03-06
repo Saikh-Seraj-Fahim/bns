@@ -159,6 +159,7 @@ export const FAQ_Data = [
     },
 ]
 
+
 export const EatData = [
     {
         id: "1",
@@ -234,6 +235,87 @@ export const EatData = [
         id: "11",
         Name_of_recipes: "Tortilla Pizza Recipe",
         Category: "Italian",
+        Type: "Dinner",
+        Time: "15 Min",
+    },
+]
+
+
+export const WorkoutData = [
+    {
+        id: "1",
+        Workout_Name: "Full-Body Workout",
+        Description: "Shift stubborn body fat and build muscle",
+        Type: "Squats",
+        Time: "01:30",
+    },
+    {
+        id: "2",
+        Workout_Name: "Full-Body Workout",
+        Description: "Shift stubborn body fat and build muscle",
+        Type: "Push-ups",
+        Time: "01:30",
+    },
+    {
+        id: "3",
+        Workout_Name: "Full-Body Workout",
+        Description: "Shift stubborn body fat and build muscle",
+        Type: "Planks",
+        Time: "1:30",
+    },
+    {
+        id: "4",
+        Workout_Name: "Full-Body Workout",
+        Description: "Shift stubborn body fat and build muscle",
+        Type: "Squats",
+        Time: "01:30",
+    },
+    {
+        id: "5",
+        Workout_Name: "Full-Body Workout",
+        Description: "Shift stubborn body fat and build muscle",
+        Type: "Push-ups",
+        Time: "15 Min",
+    },
+    {
+        id: "6",
+        Workout_Name: "Full-Body Workout",
+        Description: "Shift stubborn body fat and build muscle",
+        Type: "Breakfast",
+        Time: "15 Min",
+    },
+    {
+        id: "7",
+        Workout_Name: "Full-Body Workout",
+        Description: "Shift stubborn body fat and build muscle",
+        Type: "Lunch",
+        Time: "15 Min",
+    },
+    {
+        id: "8",
+        Workout_Name: "Full-Body Workout",
+        Description: "Shift stubborn body fat and build muscle",
+        Type: "Dinner",
+        Time: "15 Min",
+    },
+    {
+        id: "9",
+        Workout_Name: "Full-Body Workout",
+        Description: "Shift stubborn body fat and build muscle",
+        Type: "Lunch",
+        Time: "15 Min",
+    },
+    {
+        id: "10",
+        Workout_Name: "Full-Body Workout",
+        Description: "Shift stubborn body fat and build muscle",
+        Type: "Breakfast",
+        Time: "15 Min",
+    },
+    {
+        id: "11",
+        Workout_Name: "Full-Body Workout",
+        Description: "Shift stubborn body fat and build muscle",
         Type: "Dinner",
         Time: "15 Min",
     },
