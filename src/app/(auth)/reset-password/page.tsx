@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Image from "next/image";
 // import api from "@/lib/axiosInterceptor";
 
 const ResetPasswordSchema = z.object({
@@ -143,7 +144,10 @@ export default function ResetPassword() {
         flex flex-col items-center justify-center gap-3 p-3 lg:p-10 m-3 bg-[#FFFFFF] 
         border rounded-lg">
                 <div className="w-full flex flex-col items-center justify-center gap-2">
-                    <h1 className="font-bold font-nunito text-[#0E0E0E] text-2xl">Pearii</h1>
+                    <div className="h-20 flex items-center justify-center px-3">
+                        <Image src="/Logo3.svg" alt="main-logo" width={480} height={180}
+                            className="object-contain scale-150" />
+                    </div>
                     <h1 className="font-bold font-nunito text-[#0E0E0E] text-2xl mt-6">
                         Reset Password</h1>
                     <p className="font-nunito text-[#7A7A7A] text-sm">The password must be

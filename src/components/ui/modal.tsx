@@ -1,3 +1,4 @@
+"use client"
 import React, { ReactNode, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
@@ -131,23 +132,41 @@ const Modal: React.FC<ModalProps> = ({
 
   const modalVariants = getModalVariants(animation);
   // Handle body scroll and pointer events
-  useEffect(() => {
+
+  useEffect(() => { // This is working. It is collected from chatGPT.
+    const body = document.body;
+
     if (isOpen) {
-      // Store original values
-      const originalOverflow = document.body.style.overflow;
-      const originalPointerEvents = document.body.style.pointerEvents;
-
-      // Apply modal styles
-      document.body.style.overflow = "hidden";
-      document.body.style.pointerEvents = "none";
-
-      // Cleanup on modal close or unmount
-      return () => {
-        document.body.style.overflow = originalOverflow || "";
-        document.body.style.pointerEvents = originalPointerEvents || "";
-      };
+      body.style.overflow = "hidden";
+    } else {
+      body.style.overflow = "";
     }
+
+    return () => {
+      body.style.overflow = "";
+    };
   }, [isOpen]);
+
+
+  // useEffect(() => { // This is faulty. It does not work properly.
+  //   if (isOpen) {
+  //     // Store original values
+  //     const originalOverflow = document.body.style.overflow;
+  //     const originalPointerEvents = document.body.style.pointerEvents;
+
+  //     // Apply modal styles
+  //     document.body.style.overflow = "hidden";
+  //     //document.body.style.pointerEvents = "none";
+
+  //     // Cleanup on modal close or unmount
+  //     return () => {
+  //       document.body.style.overflow = originalOverflow || "";
+  //       document.body.style.pointerEvents = originalPointerEvents || "";
+  //     };
+  //   }
+  // }, [isOpen]);
+
+
 
   // Handle escape key - only when modal is open
   useEffect(() => {

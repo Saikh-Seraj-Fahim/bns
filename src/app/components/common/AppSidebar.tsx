@@ -14,6 +14,7 @@ import { MdContentPaste, MdDirectionsRun, MdManageAccounts } from "react-icons/m
 import { TbLogout } from "react-icons/tb";
 import { useLogOut } from "@/app/LogOutContext";
 import LogOutModal from "./LogOutModal";
+import Image from "next/image";
 
 type SidebarItem = {
     title: string;
@@ -75,9 +76,11 @@ export default function AppSidebar() {
         // Added delay to prevent tooltip from showing immediately
         <TooltipProvider delayDuration={200} skipDelayDuration={0}>
             <Sidebar collapsible="icon" side="left" className="font-nunito text-base">
-                <SidebarHeader className="h-20 flex items-center justify-center 
-                group-data-[collapsible=icon]:hidden">
-                    <h1 className="font-nunito font-bold text-2xl">Pearii</h1>
+                <SidebarHeader className="h-20 flex items-center justify-center px-3">
+                    <Link href="/dashboard" className="transition-all group-data-[collapsible=icon]:hidden">
+                        <Image src="/Logo3.svg" alt="main-logo" width={480} height={180}
+                            className="object-contain scale-150" />
+                    </Link>
                 </SidebarHeader>
                 <SidebarSeparator />
 

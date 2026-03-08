@@ -11,8 +11,10 @@ export default function PasswordChanged() {
             {/* <div className="absolute w-full h-full z-10 bg-[]" /> Overlay */}
             <div className="max-w-[500px] w-full h-[500px] flex flex-col items-center 
             justify-center gap-8 p-3 lg:p-10 m-3 bg-[#FFFFFF] border rounded-lg">
-                <h1 className="font-bold font-nunito text-[#0E0E0E] text-2xl">
-                    Pearii</h1>
+                <div className="h-20 flex items-center justify-center px-3">
+                    <Image src="/Logo3.svg" alt="main-logo" width={480} height={180}
+                        className="object-contain scale-150" />
+                </div>
                 <h1 className="font-bold font-nunito text-[#0E0E0E] text-xl">
                     Password changed successfully!</h1>
 

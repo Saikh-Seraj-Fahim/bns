@@ -42,7 +42,7 @@ export default function NavBarWithTrigger() {
                 {/*Left*/}
                 <div className="flex gap-2">
                     <SidebarTrigger />
-                    <p className="font-medium text-black">Dashboard</p>
+                    {/* <p className="font-medium text-black">Dashboard</p> */}
                 </div>
 
                 {/*Right*/}
