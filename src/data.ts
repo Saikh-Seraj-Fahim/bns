@@ -320,3 +320,85 @@ export const WorkoutData = [
         Time: "15 Min",
     },
 ]
+
+
+export const PeariiEditData = [
+    {
+        id: "1",
+        Name: "The Pearii Edit 1",
+        Description: "Yoga Podcast",
+        Time: "15 min",
+    },
+    {
+        id: "2",
+        Name: "The Pearii Edit 2",
+        Description: "Yoga Podcast",
+        Time: "15 min",
+    },
+    {
+        id: "3",
+        Name: "The Pearii Edit 3",
+        Description: "Yoga Podcast",
+        Time: "15 min",
+    },
+    {
+        id: "4",
+        Name: "The Pearii Edit 4",
+        Description: "Yoga Podcast",
+        Time: "15 min",
+    },
+    {
+        id: "5",
+        Name: "The Pearii Edit 5",
+        Description: "Yoga Podcast",
+        Time: "15 min",
+    },
+    {
+        id: "6",
+        Name: "The Pearii Edit 6",
+        Description: "Yoga Podcast",
+        Time: "15 min",
+    },
+    {
+        id: "7",
+        Name: "The Pearii Edit 7",
+        Description: "Yoga Podcast",
+        Time: "15 min",
+    },
+    {
+        id: "8",
+        Name: "The Pearii Edit 8",
+        Description: "Yoga Podcast",
+        Time: "15 min",
+    },
+    {
+        id: "9",
+        Name: "The Pearii Edit 9",
+        Description: "Yoga Podcast",
+        Time: "15 min",
+    },
+    {
+        id: "10",
+        Name: "The Pearii Edit 10",
+        Description: "Yoga Podcast",
+        Time: "15 min",
+    },
+    {
+        id: "11",
+        Name: "The Pearii Edit 11",
+        Description: "Yoga Podcast",
+        Time: "15 min",
+    },
+]
+
+
+export const ContentData = [
+    {
+        id: "1",
+        Title: "Privacy Policy",
+    },
+    {
+        id: "2",
+        Title: "Terms & Conditions",
+    },
+]
