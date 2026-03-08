@@ -4,7 +4,7 @@ import { Search } from "lucide-react";
 import { ContentData } from "@/data";
 import { DataTable } from "./data-table";
 import { columns } from "./columns";
-import { UserDataType } from "./columns";
+import { ContentDataType } from "./columns";
 import { useRouter, useSearchParams } from "next/navigation";
 import EditUserForm from "@/app/components/UserManagement/EditUserForm";
 import { Button } from "@/components/ui/button";
@@ -18,8 +18,8 @@ export default function ContentManagement() {
     const editingId = searchParams.get("edit");  // read from URL
     const editingContent = ContentData.find((c) => c.id === editingId) ?? null;
 
-    const EditContent = (user: UserDataType) => {
-        router.push(`?edit=${user.id}`); // push to history
+    const EditContent = (content: ContentDataType) => {
+        router.push(`?edit=${content.id}`); // push to history
     };
 
     const handleBack = () => {
@@ -27,7 +27,7 @@ export default function ContentManagement() {
     };
 
     if (editingContent) {
-        return <EditUserForm user={editingContent} onBack={handleBack} />;
+        return <EditUserForm content={editingContent} onBack={handleBack} />;
     }
 
     return (
