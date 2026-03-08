@@ -10,9 +10,10 @@ import { Button } from "@/components/ui/button";
 import EditWorkoutForm from "@/app/components/Workout/EditWorkoutForm";
 import AddWorkoutForm from "@/app/components/Workout/AddWorkoutForm";
 import ViewWorkoutForm from "@/app/components/Workout/ViewWorkoutForm";
+import { Suspense } from "react";
 
 
-export default function WorkoutManagement() {
+function WorkoutManagement() {
     const router = useRouter();
     const searchParams = useSearchParams();
 
@@ -88,7 +89,14 @@ export default function WorkoutManagement() {
     );
 }
 
-
+// Wrap with Suspense boundary
+export default function Workout() {
+    return (
+        <Suspense fallback={<div className="p-6 bg-[#F6F6F6] text-center py-8">Loading...</div>}>
+            <WorkoutManagement />
+        </Suspense>
+    );
+}
 
 
 // useSearchParams() is a hook, and hooks in Next.js/React are reactive —

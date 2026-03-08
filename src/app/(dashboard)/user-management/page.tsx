@@ -10,9 +10,10 @@ import EditUserForm from "@/app/components/UserManagement/EditUserForm";
 import { Button } from "@/components/ui/button";
 import AddUserForm from "@/app/components/UserManagement/AddUserForm";
 import ViewUserDetails from "@/app/components/UserManagement/ViewUser";
+import { Suspense } from "react";
 
 
-export default function UserManagement() {
+function UserManagement() {
     const router = useRouter();
     const searchParams = useSearchParams();
 
@@ -88,7 +89,14 @@ export default function UserManagement() {
     );
 }
 
-
+// Wrap with Suspense boundary
+export default function User() {
+    return (
+        <Suspense fallback={<div className="p-6 bg-[#F6F6F6] text-center py-8">Loading...</div>}>
+            <UserManagement />
+        </Suspense>
+    );
+}
 
 
 // useSearchParams() is a hook, and hooks in Next.js/React are reactive —

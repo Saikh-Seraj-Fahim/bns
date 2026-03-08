@@ -8,9 +8,10 @@ import { PeariiEditDataType } from "./columns";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import AddUserForm from "@/app/components/UserManagement/AddUserForm";
+import { Suspense } from "react";
 
 
-export default function Resources() {
+function ResourcesManagement() {
     const router = useRouter();
     const searchParams = useSearchParams();
 
@@ -61,7 +62,14 @@ export default function Resources() {
     );
 }
 
-
+// Wrap with Suspense boundary
+export default function Resources() {
+    return (
+        <Suspense fallback={<div className="p-6 bg-[#F6F6F6] text-center py-8">Loading...</div>}>
+            <ResourcesManagement />
+        </Suspense>
+    );
+}
 
 
 // useSearchParams() is a hook, and hooks in Next.js/React are reactive —

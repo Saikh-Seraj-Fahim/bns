@@ -10,9 +10,10 @@ import EditEatForm from "@/app/components/Eat/EditEatForm";
 import { Button } from "@/components/ui/button";
 import ViewEat from "@/app/components/Eat/ViewEat";
 import AddEatForm from "@/app/components/Eat/AddEatForm";
+import { Suspense } from "react";
 
 
-export default function UserManagement() {
+function EatManagement() {
     const router = useRouter();
     const searchParams = useSearchParams();
 
@@ -88,6 +89,14 @@ export default function UserManagement() {
     );
 }
 
+// Wrap with Suspense boundary
+export default function Eat() {
+    return (
+        <Suspense fallback={<div className="p-6 bg-[#F6F6F6] text-center py-8">Loading...</div>}>
+            <EatManagement />
+        </Suspense>
+    );
+}
 
 
 

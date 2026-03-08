@@ -7,9 +7,10 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import EditFAQForm from "@/app/components/FAQ/EditFAQForm";
 import AddFAQForm from "@/app/components/FAQ/AddFAQForm";
+import { Suspense } from "react";
 
 
-export default function FAQManagement() {
+function FAQManagement() {
     console.log(FAQ_Data);
     const router = useRouter();
     const searchParams = useSearchParams();
@@ -61,7 +62,14 @@ export default function FAQManagement() {
     );
 }
 
-
+// Wrap with Suspense boundary
+export default function FAQ() {
+    return (
+        <Suspense fallback={<div className="p-6 bg-[#F6F6F6] text-center py-8">Loading...</div>}>
+            <FAQManagement />
+        </Suspense>
+    );
+}
 
 
 // useSearchParams() is a hook, and hooks in Next.js/React are reactive —

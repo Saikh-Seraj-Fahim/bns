@@ -8,9 +8,10 @@ import { ContentDataType } from "./columns";
 import { useRouter, useSearchParams } from "next/navigation";
 import EditUserForm from "@/app/components/UserManagement/EditUserForm";
 import { Button } from "@/components/ui/button";
+import { Suspense } from "react";
 
 
-export default function ContentManagement() {
+function ContentManagement() {
     const router = useRouter();
     const searchParams = useSearchParams();
 
@@ -44,7 +45,14 @@ export default function ContentManagement() {
     );
 }
 
-
+// Wrap with Suspense boundary
+export default function Content() {
+    return (
+        <Suspense fallback={<div className="p-6 bg-[#F6F6F6] text-center py-8">Loading...</div>}>
+            <ContentManagement />
+        </Suspense>
+    );
+}
 
 
 // useSearchParams() is a hook, and hooks in Next.js/React are reactive —
